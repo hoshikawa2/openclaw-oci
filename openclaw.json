@@ -49,7 +49,7 @@
     "bind": "loopback",
     "auth": {
       "mode": "token",
-      "token": "3c758e93a4e6bbdd823795a4e40a70409099823f49b89b93"
+      "token": "<Openclaw TOKEN - maintain your current config json>"
     },
     "tailscale": {
       "mode": "off",
