@@ -301,6 +301,12 @@ You now have:
 
 ------------------------------------------------------------------------
 
+# Reference
+
+- [Installing the OCI CLI](https://docs.oracle.com/en-us/iaas/private-cloud-appliance/pca/installing-the-oci-cli.htm)
+- [Oracle Cloud Generative AI](https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/)
+- [OpenClaw](https://openclaw.ai/)
+
 # Acknowledgments
 
 - **Author** - Cristiano Hoshikawa (Oracle LAD A-Team Solution Engineer)
