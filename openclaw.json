@@ -40,8 +40,8 @@
     "ackReactionScope": "group-mentions"
   },
   "commands": {
-    "native": "off",
-    "nativeSkills": "off"
+    "native": false,
+    "nativeSkills": false
   },
   "gateway": {
     "port": 18789,
