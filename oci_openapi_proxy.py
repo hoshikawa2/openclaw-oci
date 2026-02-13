@@ -269,7 +269,12 @@ async def chat_completions(request: Request):
     if body.get("stream"):
         return StreamingResponse(
             fake_stream(text, body["model"]),
-            media_type="text/event-stream"
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no"
+            }
         )
 
     return build_openai_response(body["model"], text)
@@ -309,7 +314,12 @@ async def responses_passthrough(request: Request):
     if body.get("stream"):
         return StreamingResponse(
             fake_stream(text, body["model"]),
-            media_type="text/event-stream"
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no"
+            }
         )
 
     return build_openai_response(body["model"], text)
