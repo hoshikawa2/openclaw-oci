@@ -1,11 +1,11 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.2.6-3",
-    "lastTouchedAt": "2026-02-12T10:50:18.766Z"
+    "lastTouchedVersion": "2026.2.1",
+    "lastTouchedAt": "2026-02-14T03:24:55.922Z"
   },
   "wizard": {
-    "lastRunAt": "2026-02-12T10:50:18.763Z",
-    "lastRunVersion": "2026.2.6-3",
+    "lastRunAt": "2026-02-14T03:24:55.917Z",
+    "lastRunVersion": "2026.2.1",
     "lastRunCommand": "onboard",
     "lastRunMode": "local"
   },
@@ -17,8 +17,8 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "gpt-4o-mini",
-            "name": "gpt-4o-mini",
+            "id": "gpt-5",
+            "name": "gpt-5" ,
             "reasoning": false,
             "input": ["text"],
             "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
@@ -32,7 +32,18 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai-compatible/gpt-4o-mini"
+        "primary": "openai-compatible/gpt-5"
+      },
+      "models": {
+        "openai-compatible/gpt-5": {}
+      },
+      "workspace": "/home/hoshikawa2/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
       }
     }
   },
@@ -40,8 +51,20 @@
     "ackReactionScope": "group-mentions"
   },
   "commands": {
-    "native": false,
-    "nativeSkills": false
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "channels": {
+    "whatsapp": {
+      "dmPolicy": "allowlist",
+      "selfChatMode": true,
+      "allowFrom": [
+        "+5511999961711"
+      ],
+      "groupPolicy": "allowlist",
+      "mediaMaxMb": 50,
+      "debounceMs": 0
+    }
   },
   "gateway": {
     "port": 18789,
@@ -49,7 +72,7 @@
     "bind": "loopback",
     "auth": {
       "mode": "token",
-      "token": "<Openclaw TOKEN - maintain your current config json>"
+      "token": "5459cc59afcb0a4de09e0ce23ef6409090059a7d35df1740"
     },
     "tailscale": {
       "mode": "off",
