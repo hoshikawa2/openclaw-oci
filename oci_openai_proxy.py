@@ -22,10 +22,10 @@ import requests
 
 OCI_CONFIG_FILE = os.getenv("OCI_CONFIG_FILE", os.path.expanduser("~/.oci/config"))
 OCI_PROFILE = os.getenv("OCI_PROFILE", "DEFAULT")
-OCI_COMPARTMENT_ID = os.getenv("OCI_COMPARTMENT_ID", "<YOUR_OCI_COMPARTMENT_ID>")
+OCI_COMPARTMENT_ID = os.getenv("OCI_COMPARTMENT_ID", "<YOUR_OCI_COMPARTMENT_ID")
 OCI_GENAI_ENDPOINT = os.getenv(
     "OCI_GENAI_ENDPOINT",
-    "https://inference.generativeai.<oci_region>.oci.oraclecloud.com"
+    "https://inference.generativeai.<your_oci_region>.oci.oraclecloud.com"
 )
 if not OCI_COMPARTMENT_ID:
     raise RuntimeError("OCI_COMPARTMENT_ID not defined")
@@ -340,6 +340,8 @@ def run_exec_loop(body: dict, max_steps: int = 10000) -> dict:
 
     last = None
 
+    last_executed_command = None
+
     for _ in range(max_steps):
         last = call_oci_chat({**body, "messages": messages}, RUNNER_PROMPT)
         print('LLM Result', last)
@@ -365,6 +367,17 @@ def run_exec_loop(body: dict, max_steps: int = 10000) -> dict:
         m_exec = EXEC_RE.search(text)
         if m_exec:
             command = m_exec.group(1).strip()
+
+            if command == last_executed_command:
+                print("⚠️ DUPLICATE COMMAND BLOCKED:", command)
+                messages.append({"role":"assistant","content": text})
+                messages.append({"role":"user","content": (
+                    "Command already executed. You must proceed or finish with (done ...)."
+                )})
+                continue
+
+            last_executed_command = command
+
             result = execute_exec_command(command)
 
             messages.append({"role":"assistant","content": text})
