@@ -188,8 +188,9 @@ OCI_GENAI_ENDPOINT = os.getenv(
 
 ``` python
 MODEL_MAP = {
-    "gpt-4o-mini": "openai.gpt-4.1",
-    "text-embedding-3-small": "cohere.embed-multilingual-v3.0",
+    "gpt-5": "openai.gpt-4.1",
+    "openai/gpt-5": "openai.gpt-4.1",
+    "openai-compatible/gpt-5": "openai.gpt-4.1",
 }
 ```
 
@@ -281,7 +282,7 @@ Payload structure:
       "compartmentId": "...",
       "servingMode": {
         "servingType": "ON_DEMAND",
-        "modelId": "openai.gpt-4.1"
+        "modelId": "gpt-5"
       },
       "chatRequest": {
         "apiFormat": "GENERIC",
@@ -336,7 +337,7 @@ Run:
 # Testing with curl
 
     curl http://127.0.0.1:8050/v1/chat/completions   -H "Content-Type: application/json"   -d '{
-        "model": "gpt-4o-mini",
+        "model": "gpt-5",
         "messages": [
           {"role": "user", "content": "Hello"}
         ]
@@ -357,16 +358,15 @@ Edit your **openclaw.json** configuration file (normaly it's in ~/.openclaw/open
             "apiKey":"sk-test",
             "api":"openai-completions",
             "models":[
-               {
-                  "id":"gpt-4o-mini",
-                  "name":"gpt-4o-mini",
-                  "reasoning":false,
-                  "input":[
-                     "text"
-                  ],
-                  "contextWindow":200000,
-                  "maxTokens":8192
-               }
+              {
+                "id": "gpt-5",
+                "name": "gpt-5" ,
+                "reasoning": false,
+                "input": ["text"],
+                "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+                "contextWindow": 200000,
+                "maxTokens": 8192
+              }
             ]
          }
       }
@@ -374,7 +374,7 @@ Edit your **openclaw.json** configuration file (normaly it's in ~/.openclaw/open
    "agents":{
       "defaults":{
          "model":{
-            "primary":"openai-compatible/gpt-4o-mini"
+           "primary": "openai-compatible/gpt-5"
          }
       }
    },
