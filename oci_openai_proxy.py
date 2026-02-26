@@ -22,7 +22,7 @@ import requests
 
 OCI_CONFIG_FILE = os.getenv("OCI_CONFIG_FILE", os.path.expanduser("~/.oci/config"))
 OCI_PROFILE = os.getenv("OCI_PROFILE", "DEFAULT")
-OCI_COMPARTMENT_ID = os.getenv("OCI_COMPARTMENT_ID", "<YOUR_OCI_COMPARTMENT_ID")
+OCI_COMPARTMENT_ID = os.getenv("OCI_COMPARTMENT_ID", "<YOUR_OCI_COMPARTMENT_ID>")
 OCI_GENAI_ENDPOINT = os.getenv(
     "OCI_GENAI_ENDPOINT",
     "https://inference.generativeai.<your_oci_region>.oci.oraclecloud.com"
